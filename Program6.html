@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Two-Column Layout with Floats and Grid</title>
+  <style>
+    
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr; 
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #f4f4f4;
+    }
+
+    
+    .float-container {
+      overflow: hidden; 
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+    }
+
+    .float-left {
+      float: left;
+      width: 48%;
+      margin-right: 4%;
+      background-color: #f9f9f9;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .float-right {
+      float: left;
+      width: 48%;
+      background-color: #f9f9f9;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr; 
+      }
+
+      .float-left, .float-right {
+        width: 100%; 
+        margin-right: 0;
+        float: none; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    
+    <div class="grid-item">
+      <h1>Welcome to my Website</h1>
+      <p>This layout demonstrates a combination of CSS Floats and Grid system.</p>
+    </div>
+
+   
+    <div class="grid-item float-container clearfix">
+      <div class="float-left">
+        <h2>Column 1 </h2>
+        <p>This is the first column of the layout. It uses CSS floats to position itself beside the second column.</p>
+      </div>
+      <div class="float-right">
+        <h2>Column 2 </h2>
+        <p>This is the second column of the layout. It also uses CSS floats to position itself beside the first column.</p>
+      </div>
+    </div>
+
+    
+    <div class="grid-item">
+      <footer>
+        
+      </footer>
+    </div>
+  </div>
+
+</body>
+</html>
