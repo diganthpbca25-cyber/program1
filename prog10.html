@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Namma Event Booking</title>
+
+<style>
+  /* --- Background and Layout --- */
+  body {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(0, 10, 30, 0.8), rgba(0, 0, 0, 0.9)),
+                url('https://images.unsplash.com/photo-1614289371513-6d84f295aa88?auto=format&fit=crop&w=1920&q=80')
+                no-repeat center center fixed;
+    background-size: cover;
+    color: #cce7ff;
+  }
+
+  header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: rgba(0, 0, 50, 0.6);
+    box-shadow: 0 0 25px rgba(0, 0, 255, 0.3);
+  }
+
+  header h1 {
+    font-size: 3em;
+    color: #00bfff;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px #0077ff;
+  }
+
+  header p {
+    font-size: 1.2em;
+    color: #88d8ff;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: rgba(10, 15, 40, 0.9);
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.3);
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    color: #00bfff;
+    letter-spacing: 1px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e0f4ff;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: #88bfff;
+  }
+
+  select {
+    color: #00bfff;
+  }
+
+  button {
+    background: linear-gradient(90deg, #0077ff, #00bfff);
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 17px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00bfff;
+  }
+
+  .confirmation {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 18px;
+    color: #00ffcc;
+  }
+
+  footer {
+    text-align: center;
+    padding: 25px;
+    background: rgba(0, 0, 50, 0.7);
+    color: #88d8ff;
+    font-size: 14px;
+    margin-top: 50px;
+  }
+
+  footer span {
+    color: #00bfff;
+  }
+
+  /* Decorative glow around container */
+  .container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    background: radial-gradient(circle, rgba(0, 140, 255, 0.3), transparent 70%);
+    filter: blur(25px);
+    z-index: -1;
+  }
+</style>
+</head>
+
+<body>
+  <header>
+    <h1>🎉 Namma Event Booking  🎟️</h1>
+    <p>Book your spot for exciting upcoming events!</p>
+  </header>
+
+  <div class="container">
+    <form id="bookingForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="event">Select Event</label>
+      <select id="event" required>
+        <option value="">-- Choose an Event --</option>
+        <option value="Tech Conference 2025">Tech Conference 2025</option>
+        <option value="Music Fest 2025">Music Fest 2025</option>
+        <option value="Startup Meetup">Startup Meetup</option>
+        <option value="Cultural Carnival">Cultural Carnival</option>
+      </select>
+
+      <label for="message">Special Message</label>
+      <textarea id="message" rows="3" placeholder="Any special request?"></textarea>
+
+      <button type="submit">Book Now</button>
+    </form>
+
+    <div class="confirmation" id="confirmationMessage"></div>
+  </div>
+
+  <footer>
+    <p><p>© 2025 Namma Event Booking  | Designed with ❤️</p>
+  </footer></p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const event = document.getElementById('event').value;
+
+      if (name && email && event) {
+        confirmationMessage.innerHTML = 
+          `🔥 Hey <strong>${name}</strong>! You’ve successfully booked for <strong>${event}</strong>.<br>
+          A confirmation mail will be sent to <strong>${email}</strong>.`;
+        form.reset();
+      } else {
+        confirmationMessage.innerHTML = `<span style="color:red;">⚠️ Please fill all fields correctly!</span>`;
+      }
+    });
+  </script>
+</body>
+</html>
