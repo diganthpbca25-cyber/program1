@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Fitness Club Membership</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url("https://source.unsplash.com/random/1920x1080/?neon,gym,fitness,workout")
+        no-repeat center center/cover;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 128, 255, 0.4)
+      );
+      animation: moveBG 12s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes moveBG {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.05);
+      }
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.75);
+      border: 2px solid rgba(0, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 20px;
+      width: 600px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8em;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff;
+      font-weight: 800;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+
+    .step {
+      display: none;
+    }
+    .step.active {
+      display: block;
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .step-indicator div {
+      width: 33%;
+      text-align: center;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #aeefff;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: background 0.3s;
+    }
+
+    .step-indicator div.active {
+      background: #00eaff;
+      color: #000;
+      box-shadow: 0 0 15px #00eaff;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #aeefff;
+      letter-spacing: 1px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      color: #fff;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #00eaff;
+      box-shadow: 0 0 10px #00eaff;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    #price-display {
+      text-align: center;
+      font-size: 1.4em;
+      color: #00ffcc;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: none;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(90deg, #00eaff, #0066ff);
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      font-size: 1.2em;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px #00eaff;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      color: #00ffcc;
+      font-size: 2em;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-shadow: 0 0 20px #00eaff;
+      margin-top: 20px;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 10px #00eaff;
+      }
+      100% {
+        text-shadow: 0 0 25px #00eaff, 0 0 50px #00eaff;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 25px;
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Neon Fitness Club</h1>
+
+    <div class="step-indicator">
+      <div class="active">1. Details</div>
+      <div>2. Payment</div>
+      <div>3. Confirm</div>
+    </div>
+
+    <form id="membership-form">
+      <!-- Step 1 -->
+      <div class="step active" id="step1">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your full name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Mobile Number</label>
+          <input
+            type="tel"
+            id="mobile"
+            placeholder="Enter your mobile number"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="level">Membership Level</label>
+          <select id="level" required>
+            <option value="">Select</option>
+            <option value="starter">Starter ($8/mo)</option>
+            <option value="pro">Pro ($12/mo)</option>
+            <option value="elite">Elite ($18/mo)</option>
+            <option value="vip">VIP ($25/mo)</option>
+          </select>
+        </div>
+
+        <p id="price-display">Price: $0</p>
+        <button type="button" onclick="showStep(2)">Proceed</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step" id="step2">
+        <div class="form-group">
+          <label for="card">Card Number</label>
+          <input
+            type="text"
+            id="card"
+            placeholder="1234 5678 9012 3456"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" placeholder="123" required />
+        </div>
+        <div class="form-group">
+          <label for="pin">PIN</label>
+          <input
+            type="password"
+            id="pin"
+            placeholder="Enter PIN"
+            required
+          />
+        </div>
+        <button type="button" onclick="showStep(3)">Next</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step" id="step3">
+        <p style="text-align: center; margin-bottom: 20px;">
+          Review your details and confirm your membership.
+        </p>
+        <button type="button" onclick="confirmMembership()">Confirm</button>
+      </div>
+    </form>
+
+    <div class="success-message" id="success">
+      ✅ Membership Activated!
+    </div>
+  </div>
+
+  <script>
+    const prices = {
+      starter: 8,
+      pro: 12,
+      elite: 18,
+      vip: 25,
+    };
+
+    document.getElementById("level").addEventListener("change", function () {
+      const value = this.value;
+      const display = document.getElementById("price-display");
+      if (value) {
+        display.style.display = "block";
+        display.textContent = `Price: $${prices[value]}/month`;
+      } else {
+        display.style.display = "none";
+      }
+    });
+
+    function showStep(step) {
+      document.querySelectorAll(".step").forEach((s) => s.classList.remove("active"));
+      document.querySelectorAll(".step-indicator div").forEach((s) => s.classList.remove("active"));
+      document.getElementById(`step${step}`).classList.add("active");
+      document.querySelector(`.step-indicator div:nth-child(${step})`).classList.add("active");
+    }
+
+    function confirmMembership() {
+      document.getElementById("membership-form").style.display = "none";
+      document.getElementById("success").style.display = "block";
+    }
+  </script>
+</body>
+</html>
