@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Persona Insight Form</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(0, 255, 163, 0.8), rgba(0, 115, 255, 0.8)), 
+                  url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      animation: gradientFlow 10s ease infinite;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 650px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 30px 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      animation: fadeUp 1.2s ease;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 2.2em;
+      letter-spacing: 1px;
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 1.1em;
+      color: #e3f6ff;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      font-size: 1em;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #00ffcc;
+      box-shadow: 0 0 10px #00ffcc;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, #00e6b8, #008cff);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #00c4a7, #0072ff);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>User Personal Empathy Form</h1>
+    <form id="personalForm">
+      <div class="form-group">
+        <label for="name">👤 Name</label>
+        <input type="text" id="name" placeholder="Enter user's name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="role">💼 Role/Profession</label>
+        <input type="text" id="role" placeholder="e.g., Designer, Student, Developer" required>
+      </div>
+
+      <div class="form-group">
+        <label for="goals">🎯 Goals</label>
+        <textarea id="goals" placeholder="What are their key goals?" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="challenges">⚡ Challenges</label>
+        <textarea id="challenges" placeholder="What challenges do they face?" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="empathy">💖 Empathy Notes</label>
+        <textarea id="empathy" placeholder="How can we empathize with their needs?" required></textarea>
+      </div>
+
+      <button type="submit">✨ Submit </button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("personaForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("🎉 Persona submitted successfully! Thank you for your insights.");
+    });
+  </script>
+</body>
+</html>
